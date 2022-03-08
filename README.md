@@ -1,4 +1,4 @@
-# Lecture3 - STEREOSCOPY AND MULTISCOPY
+# Lecture4 - STEREOSCOPY AND MULTISCOPY
 
 ## Preparation
 
