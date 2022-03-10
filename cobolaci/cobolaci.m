@@ -23,8 +23,6 @@ depthMaps = {};
 
         %compute depthMap
         depth = DepthMapComputation(I0,I1,doffs,b,f,vmin,vmax);
-        depth(isnan(depth)) = 0;
-        depth = imhmin(depth,0.0001);
         depthMaps{i-1} = depth;
 
     end
