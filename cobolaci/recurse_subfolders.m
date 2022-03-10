@@ -22,7 +22,7 @@ while true
 	end
 	listOfFolderNames = [listOfFolderNames singleSubFolder];
 end
-numberOfFolders = length(listOfFolderNames)
+numberOfFolders = length(listOfFolderNames);
 
 % Process all image files in those folders.
 for k = 1 : numberOfFolders
