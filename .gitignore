@@ -8,6 +8,7 @@
 *.asv
 *.db
 *.npz
+*.txt
 
 .idea
 .ipynb_checkpoints
