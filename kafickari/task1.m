@@ -16,8 +16,8 @@ info = readcell([paths,'\im', num2str(i),'\calib.txt']);
     f2 = str2num(info{2,2});
 K = [f1; f2];
 
-depth = kafickari(paths);
-depth = depth{1,2};
+% depth = kafickari(paths);
+depth = Depth_map{1,2};
 Sd = size(depth);
 [X,Y] = meshgrid(1:Sd(2),1:Sd(1));
 %K is calibration matrix
