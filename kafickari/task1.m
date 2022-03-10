@@ -1,6 +1,6 @@
 %% nacteni obrazku
 Depth_map = cell(1,5);
-paths = 'C:\Users\xschne08\Documents\mpc_ab2\Lecture4\Data\im';
+paths = 'C:\Users\xschne08\Documents\mpc_ab2\Lecture4\Data';
 for i = 1:5
 
 im0 = imread([paths, num2str(i),'\im0.png']);
