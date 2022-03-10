@@ -40,7 +40,7 @@ function [depthMaps] = Radiologove( path )
         baseline = repmat(baseline,size(disparityMap));
         doffs = repmat(doffs,size(disparityMap));
         Z = (baseline.*f)./(disparityMap+doffs);
-        Z(isnan(Z)) = nanmean(nanmean(Z))+300;%-30;
+        Z(isnan(Z)) = nanmean(nanmean(Z))+200;%-30;
         nanMap = isnan(Z);
         counts = conv2(~nanMap, ones(3), 'same');
         % Get the sums of the non-nan values in the 3-by-3 window
