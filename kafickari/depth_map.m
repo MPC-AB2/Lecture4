@@ -7,7 +7,7 @@ function [Z] = depth_map(im0, im1, info)
     im1_gray = im2gray(im1);
     
     pom = mod((info{10,2}-info{9,2}),16);
-    disparityRange = [info{9,2} (info{10,2}-pom)+16];
+    disparityRange = [info{9,2} (info{10,2}-pom)];
     
     disparityMap = disparityBM(im0_gray,im1_gray, 'DisparityRange',disparityRange,'UniquenessThreshold',1);
     %disparityMap(isnan(disparityMap)) = 0;%a nebo pak interpolovat
