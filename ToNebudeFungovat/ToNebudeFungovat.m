@@ -26,12 +26,14 @@ function [depthMaps] = ToNebudeFungovat( path )
     
         range = [50 178];
         dispMap = disparitySGM(im0,im1,"DisparityRange",range);
-        
+        dispMap_pom = disparityBM(im0, im1, 'DisparityRange', range);
+
+                
         kolik_min = 4;
         zmena = 1;
         velikost_okna = 5;
         pom = floor(velikost_okna/2);
-        for ii = 1:40
+        for ii = 1:50
 %            if mod(ii,10)==0
 %                 disp(ii)
 %            end
@@ -50,6 +52,7 @@ function [depthMaps] = ToNebudeFungovat( path )
             end
         end
     
+        dispMap(isnan(dispMap)) = dispMap_pom(isnan(dispMap));
     %% Interpolace
     %     dispMap(isnan(dispMap)) = 0;
     %     imshow(dispMap,range)
@@ -59,10 +62,12 @@ function [depthMaps] = ToNebudeFungovat( path )
         depthMaps{1,i} = Z;
     end
     
+%      addpath("C:\Users\xnemec77\Documents\MPC-AB2\Lecture4\Data_public")
+%     [MAE,percantageMissing,~] = evaluateReconstruction(depthMaps)
+    
 end
 
-%      addpath("C:\Users\xsando01\Documents\AB2\Lecture4")
-%      [MAE,percantageMissing,~] = evaluateReconstruction(depthMaps)
+   
 
 
 
