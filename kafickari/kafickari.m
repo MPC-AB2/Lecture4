@@ -8,6 +8,8 @@ function [Depth_map] = kafickari(paths)
         info = readcell([paths,'\im', num2str(i),'\calib.txt']);
         
         Z = depth_map(im0, im1, info);
+        Z = fillmissing(Z, "linear");
+        Z(isnan(Z)) = 1;
         Z = medfilt2(Z, [40 40]);
         Depth_map{1,i} = Z;
     end
