@@ -4,6 +4,7 @@ function [depthMaps] = prvni(path)
     for i = 1:length(folders)
         im0 = imread([folders(i).folder, '\', folders(i).name,  '\im0.png']);
         im1 = imread([folders(i).folder, '\', folders(i).name,  '\im1.png']);
+
         
         [vars , vals] = readvars([folders(i).folder, '\', folders(i).name,  '\calib.txt']);
         doffs = vals(vars=="doffs");
@@ -13,17 +14,17 @@ function [depthMaps] = prvni(path)
         A = str2num(splited{2});
         f = A(1,1);
 
-        dispar = disparitySGM(rgb2gray(im0), rgb2gray(im1), 'UniquenessThreshold',1);
+        dispar = disparitySGM(rgb2gray(im0), rgb2gray(im1), 'UniquenessThreshold', 1, 'DisparityRange' ,[32, 128]);
 %         dispar(isnan(dispar)) = 0;
         depthMap = (baseline*f)./(dispar+doffs) ;
         depthMap(isnan(depthMap)) = 0;
 
-        se = strel('ball',4,4);
+        se = strel('ball',4,4); 
 
         depthMap_fi = medfilt2(depthMap);
         depthMap_er = imerode(depthMap_fi,se);
         H = fspecial('average',[100 100]);
-        depthMap_av = imfilter(depthMap_er,H,'replicate');
+        depthMap_av = imfilter(depthMap_er,H,'circular');
 
 %         figure
 %         subplot 131
