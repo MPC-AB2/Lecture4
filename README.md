@@ -1,5 +1,7 @@
 # Lecture4 - STEREOSCOPY AND MULTISCOPY
 
+[**Benchmark Results**](https://moodle.vut.cz/pluginfile.php/407360/mod_resource/content/1/BenchmarkReconstruction.xlsx%20-%20List1.pdf)
+
 ## Preparation
 
 1. Run Git bash.
