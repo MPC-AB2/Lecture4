@@ -20,7 +20,7 @@ function [depthMaps] = Radiologove( path )
         %% disparity map
         ndisp = strsplit(txt{7},'=');
         ndisp = str2double(ndisp{2});
-        nd = round(ndisp/16)*16
+        nd = round(ndisp/16)*16;
         disparityRange = [0 nd];
         
         disparityMap = disparityBM(im0,im1,'DisparityRange',disparityRange,'UniquenessThreshold',20,'ContrastThreshold',0.5,'DistanceThreshold',5);
@@ -40,7 +40,7 @@ function [depthMaps] = Radiologove( path )
         baseline = repmat(baseline,size(disparityMap));
         doffs = repmat(doffs,size(disparityMap));
         Z = (baseline.*f)./(disparityMap+doffs);
-        Z(isnan(Z)) = nanmean(nanmean(Z))-30;
+        Z(isnan(Z)) = nanmean(nanmean(Z))+50;%-30;
         nanMap = isnan(Z);
         counts = conv2(~nanMap, ones(3), 'same');
         % Get the sums of the non-nan values in the 3-by-3 window
