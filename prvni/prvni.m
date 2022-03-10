@@ -18,10 +18,12 @@ function [depthMaps] = prvni(path)
         depthMap = (baseline*f)./(dispar+doffs) ;
         depthMap(isnan(depthMap)) = 0;
 
-        se = strel('ball',2,2);
+        se = strel('ball',4,4);
 
         depthMap_fi = medfilt2(depthMap);
         depthMap_er = imerode(depthMap_fi,se);
+        H = fspecial('average',[100 100]);
+        depthMap_av = imfilter(depthMap_er,H,'replicate');
 
 %         figure
 %         subplot 131
@@ -31,6 +33,6 @@ function [depthMaps] = prvni(path)
 %         subplot 133
 %         imshow(depthMap_fi, [])
 
-        depthMaps{i} = depthMap_er;
+        depthMaps{i} = depthMap_av;
     end
 end
