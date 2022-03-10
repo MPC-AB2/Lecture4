@@ -13,9 +13,24 @@ function [depthMaps] = prvni(path)
         A = str2num(splited{2});
         f = A(1,1);
 
-        dispar = disparitySGM(rgb2gray(im0), rgb2gray(im1));
-        dispar(isnan(dispar)) = 0;
+        dispar = disparitySGM(rgb2gray(im0), rgb2gray(im1), 'UniquenessThreshold',1);
+%         dispar(isnan(dispar)) = 0;
         depthMap = (baseline*f)./(dispar+doffs) ;
-        depthMaps{i} = depthMap;
+        depthMap(isnan(depthMap)) = 0;
+
+        se = strel('ball',2,2);
+
+        depthMap_fi = medfilt2(depthMap);
+        depthMap_er = imerode(depthMap_fi,se);
+
+%         figure
+%         subplot 131
+%         imshow(depthMap, [])
+%         subplot 132
+%         imshow(depthMap_er, [])
+%         subplot 133
+%         imshow(depthMap_fi, [])
+
+        depthMaps{i} = depthMap_er;
     end
 end
